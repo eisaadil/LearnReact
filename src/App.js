@@ -11,7 +11,8 @@ function App() {
       Could use props too from App.js:
       <Contact email="eisaadil@outlook.com" name="Eisa Adil" phoneNum = "2263408134"/>
       <Contact email="eisaadil@gmail.com" name="Eisa Adilz" phoneNum = "3533434"/>  */}
-      <Contact contactData = {{contactData}}/>
+      {/* <Contact contactData = {{contactData}}/> */}
+      <Contact></Contact>
     </div>
   );
 }
