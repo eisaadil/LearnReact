@@ -40,6 +40,7 @@ class Contact extends React.Component{
             <label htmlFor="male">Male</label><br/>
             <input type="radio" name={"gender"+this.props.contactData.id} value="female" defaultChecked={true ? this.props.contactData.gender == "female": false} onChange={this.changedgender.bind(this)}/>
             <label htmlFor="female">Female</label><br/>
+            <p style={{display:this.props.isLoading ? "block": "none"}}>Loading</p>
         </div>
         )
     }

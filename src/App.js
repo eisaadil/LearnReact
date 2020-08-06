@@ -20,7 +20,8 @@ class App extends React.Component{
     super()
     this.state = { //states are dynamic and changing a state is reflected across all components
       myVar: 10,
-      contactData: contactData
+      contactData: contactData,
+      isLoading: true
     }
     this.changeContactData = this.changeContactData.bind(this)
   }
@@ -30,8 +31,18 @@ class App extends React.Component{
         con.gender = gen;
     })
   }
+  componentDidMount(){
+    setTimeout(()=>{
+      this.setState((prevState)=>{
+        prevState.isLoading = false
+        return prevState
+      })
+      console.log(this.state.isLoading)
+    },2000)
+    
+  }  
   render(){
-    const allContacts = this.state.contactData.map((x)=><Contact contactData = {x} key = {x.id} contactDataHandler={this.changeContactData} />);
+    const allContacts = this.state.contactData.map((x)=><Contact contactData = {x} key = {x.id} contactDataHandler={this.changeContactData} isLoading = {this.state.isLoading}/>);
     console.log(allContacts)
     return (
       <div>
