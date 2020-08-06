@@ -2,26 +2,44 @@ import React from 'react';
 import './App.css';
 import './components/Contact'
 import Contact from './components/Contact';
-import contactData from "./components/contactData"
+import contactData from "./contactData"
 
-function App() {
-  const contacts = contactData.map(x => 
-    <div>
-        <h1>Name: {x.name}</h1>
-        <h2>Phone Num: {x.ph}</h2>
-        <h3>Email: {x.email}</h3>
-    </div>
-  )
-  return (
-    <div>
-      {/* 
-      Could use props too from App.js:
-      <Contact email="eisaadil@outlook.com" name="Eisa Adil" phoneNum = "2263408134"/>
-      <Contact email="eisaadil@gmail.com" name="Eisa Adilz" phoneNum = "3533434"/>  */}
-      {/* <Contact contactData = {{contactData}}/> */}
-      <Contact contactData = {contacts}></Contact>
-    </div>
-  );
+// Function-based component
+// function App() {
+//   const allContacts = contactData.map((x)=><Contact contactData = {x} key = {x.id}/>);
+//   return (
+//     <div>
+//       {allContacts}
+//     </div>
+//   );
+// }
+
+//Class-based component (use this.props when need props, can create more methods along with render)
+class App extends React.Component{
+  constructor(){
+    super()
+    this.state = { //states are dynamic and changing a state is reflected across all components
+      myVar: 10,
+      contactData: contactData
+    }
+    this.changeContactData = this.changeContactData.bind(this)
+  }
+  changeContactData(id, gen){
+    this.state.contactData.map((con) => {
+      if (con.id == id)
+        con.gender = gen;
+    })
+  }
+  render(){
+    const allContacts = this.state.contactData.map((x)=><Contact contactData = {x} key = {x.id} contactDataHandler={this.changeContactData} />);
+    console.log(allContacts)
+    return (
+      <div>
+        {allContacts}
+        My random num: {this.state.myVar}
+      </div>
+    );
+  }
 }
 
 export default App;
