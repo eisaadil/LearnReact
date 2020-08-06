@@ -23,12 +23,6 @@ class Contact extends React.Component{
     changedgender(e){
         const gen = e.target.value
         const id = e.target.name.replace(/\D/g,'') //to extract id
-
-        // this.props.contactData.map((c)=>{
-        //     if (c.id == id){
-        //         c.gender = gen
-        //     }
-        // })
         this.props.contactDataHandler(id,gen)
         console.log(this.props.contactData)
     }
